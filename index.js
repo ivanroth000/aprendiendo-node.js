@@ -5,6 +5,7 @@ En Node.js no esta el atributo windows que hay en js, en su defectos tenemos
 globalThis, la cual es una variable global en toda nuestra aplicación.
 
 */
+
 //console.log(globalThis)
 
 //Sistema de modulos CommonJS, sirve para exportar e importar código:

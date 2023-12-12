@@ -1,0 +1,10 @@
+npm, una cosa es el registro donde están hospedadas todas las dependencias
+y otra cosa es la línea de comando que es la utilidad que usamos en la terminal 
+para manejar nuestras dependencias.
+
+Para iniciar un proyecto en node.js hay que usar la línea:
+
+npm init
+
+Hay 2 tipos de dependencias, las de producción (como picocolors) y las de 
+desarrollo (como standard) // npm i standard -D

@@ -1,6 +1,6 @@
 const fs = require("node:fs"); // Obtiene las estadísticas de un archivo o carpeta
 
-const stats = fs.statSync("./archivo.txt"); // En este caso lo hacemos de forma asíncrona por eso el 'Sync'
+const stats = fs.statSync("./archivo.txt"); // En este caso lo hacemos de forma síncrona por eso el 'Sync'
 
 console.log(
   stats.isFile(), // Si es un fichero

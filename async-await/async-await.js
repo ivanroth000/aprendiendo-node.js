@@ -44,3 +44,4 @@ console.log('terminamos de hacer el async-await')
 init()
 
 // La diferencia es que la primera es anónima
+// Asyn-Await es asincrónico secuencial, va leyendo las líneas en orden

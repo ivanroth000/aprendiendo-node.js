@@ -10,7 +10,7 @@ globalThis, la cual es una variable global en toda nuestra aplicación.
 //Sistema de modulos CommonJS, sirve para exportar e importar código:
 
 // Commond Require Module
-const { suma } = require("./suma");
+const  {suma}  = require("./suma"); //importamos la función suma del archivo suma.js
 
 console.log(suma(2, 4));
 

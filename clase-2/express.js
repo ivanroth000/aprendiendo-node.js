@@ -70,7 +70,6 @@ app.use((req, res, next) => {
     
     req.on('end', () => {
     const data = JSON.parse(body)
-    data.timestamp = Date.now()
     // mutar la request y meter la información en el req.body
     req.body = data
     next()

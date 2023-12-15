@@ -1,8 +1,12 @@
 const express = require("express");
+const crypto = require('node:crypto') //Biblioteca nativa de node.js. En este caso lo usamos para crear un id random
+const { validateMovie } = require('./movie.js')
 const app = express();
+app.use(express.json())
 const movies = require("./movies.json");
 app.disable("x-powered-by");
 
+//GET para filtrar por genero
 app.get("/movies", (req, res) => {
   const { genre } = req.query;
   if (genre) {
@@ -14,12 +18,32 @@ app.get("/movies", (req, res) => {
   res.json(movies);
 });
 
+//GET para filtrar por ID
 app.get("/movies/:id", (req, res) => {
   const { id } = req.params; //Para poder pasarle diferentes ID
   const movie = movies.find((movie) => movie.id === id);
   if (movie) return res.json(movie);
   res.status(404).json({ message: "Movie not found" });
 });
+
+//POST
+app.post('/movies', (req, res) => {
+    result = validateMovie(req.body)
+
+    if(result.error){
+        return res.status(400).json({error: JSON.parse(result.error.message)})
+    }
+
+    const newMovie = {
+        id: crypto.randomUUID(),
+        ...result.data
+    }
+
+    movies.push(newMovie) //No sería rest porque estamos guardando la info en la memoria en lugar de una base de datos
+
+    res.status(201).json(newMovie)
+})
+
 
 const PORT = process.env.PORT ?? 1234;
 

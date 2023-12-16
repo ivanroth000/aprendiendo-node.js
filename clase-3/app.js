@@ -1,6 +1,6 @@
 const express = require("express");
 const crypto = require('node:crypto') //Biblioteca nativa de node.js. En este caso lo usamos para crear un id random
-const { validateMovie } = require('./movie.js')
+const { validateMovie, validatePartialMovie } = require('./movie.js')
 const app = express();
 app.use(express.json())
 const movies = require("./movies.json");
@@ -28,7 +28,7 @@ app.get("/movies/:id", (req, res) => {
 
 //POST
 app.post('/movies', (req, res) => {
-    result = validateMovie(req.body)
+   const result = validateMovie(req.body)
 
     if(result.error){
         return res.status(400).json({error: JSON.parse(result.error.message)})
@@ -44,6 +44,30 @@ app.post('/movies', (req, res) => {
     res.status(201).json(newMovie)
 })
 
+//PATCH actualizar algún dato de la película
+
+app.patch('/movies/:id', (req, res) => {
+  const result = validatePartialMovie(req.body)
+  if(result.error){
+    return res.status(404).json({error: JSON.parse(result.error.message)})
+  }
+
+  const {id} = req.params //Extrae el ID de la película de los parámetros de la ruta.
+  const movieIndex = movies.findIndex(movie => movie.id === id)
+
+  if(movieIndex === -1){
+    return res.status(404).json({message: 'movie not found'})
+  }
+
+  const updateMovie = {
+    ...movies[movieIndex],
+    ...result.data
+  } //Esto crea un nuevo objeto de película combinando la película existente con los datos de actualización. Los datos de actualización sobrescribirán las propiedades correspondientes en la película existente.
+
+  movies[movieIndex] = updateMovie //Actualiza la película en el array movies.
+  return res.json(updateMovie)
+
+})
 
 const PORT = process.env.PORT ?? 1234;
 

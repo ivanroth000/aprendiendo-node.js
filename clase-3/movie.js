@@ -25,6 +25,11 @@ function validateMovie (object) {
     return movieSchema.safeParse(object)
 }
 
+function validatePartialMovie (object) {
+    return movieSchema.partial().safeParse(object) //El partial hace que cada una de las propiedad de movieSchema sean opcionales, sirve para actualizar algún dato de las películas
+}
+
 module.exports = {
-    validateMovie
+    validateMovie,
+    validatePartialMovie
 }

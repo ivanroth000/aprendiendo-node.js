@@ -1,0 +1,13 @@
+Diferencia entre POST, PUT y PATCH
+
+POST:
+Crea un nuevo elemento/recurso en el servidor.
+la url sería /movies
+
+PUT:
+Actualiza totalmente un elemento existente o lo crea sino existe.
+la url sería /movies/id
+
+PATCH:
+Actualiza parcialmente un elemento/recurso.
+la url sería /movies/id

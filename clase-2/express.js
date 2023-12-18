@@ -44,7 +44,7 @@ const data = JSON.parse(body): Esto convierte la cadena body en un objeto JavaSc
 res.status(201).json(data): Esto envía una respuesta al cliente. La respuesta tiene un código de estado HTTP de 201, que indica que se ha creado un recurso con éxito. La respuesta también incluye los datos de la solicitud en formato JSON.
 */
 
-// la última a la que va a llegar, ya que va por orde
+// la última a la que va a llegar, ya que va por orden
 // el 404 debería ir último antes del app.listen
 app.use((req, res) => { 
     res.status(404).send('<h1>error 404</h1>')

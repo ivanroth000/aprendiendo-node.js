@@ -1,0 +1,20 @@
+Si queremos trabajar con modules en luugar de common.js lo primero que tenemos
+que hacer es, en el package.json poner "type": "module",
+
+Para leer un json en ESModules:
+
+import {createRequire} from 'node:module'
+const require = createRequire(import.meta.url) =>El import.meta.url tiene la dirección del archivo actual en el que estamos
+const movies = require('./movies.json')
+
+Una forma para hacerlo más práctico es, en otra carpeta, escribir:
+
+import { createRequire } from 'node:module'
+const require = createRequire(import.meta.url)
+
+export const readJSON = (path) => require(path)
+
+y luego importas esa función:
+
+import { readJSON } from './lacarpeta'
+const movies = readJSON('./movies.json')

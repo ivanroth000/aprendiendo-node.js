@@ -1,4 +1,4 @@
-const z = require('zod') //Instalamos zod(npm i zod -E) y con esta z vamos a hacer las validaciones
+import {z} from 'zod' //Instalamos zod(npm i zod -E) y con esta z vamos a hacer las validaciones
 
 const movieSchema = z.object({
     title: z.string({
@@ -21,15 +21,11 @@ const movieSchema = z.object({
     )
 })
 
-function validateMovie (object) {
+export function validateMovie (object) {
     return movieSchema.safeParse(object)
 }
 
-function validatePartialMovie (object) {
+export function validatePartialMovie (object) {
     return movieSchema.partial().safeParse(object) //El partial hace que cada una de las propiedad de movieSchema sean opcionales, sirve para actualizar algún dato de las películas
 }
 
-module.exports = {
-    validateMovie,
-    validatePartialMovie
-}
